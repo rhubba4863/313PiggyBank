@@ -11,7 +11,8 @@ USE savingsAccount;
 CREATE TABLE user (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	username VARCHAR(30),
-	password VARCHAR(30)
+	password VARCHAR(30),
+	budget DECIMAL(7,2)
 	);
 
 CREATE TABLE item (
