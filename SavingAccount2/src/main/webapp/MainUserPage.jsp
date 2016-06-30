@@ -5,13 +5,19 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">k,k,,
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
     <body>
+        
+        <form action="WebRead" method="POST">
+            <input type="text" name="search"/>
+            <input type="submit" value="Search"/>
+        </form>
         <h1>Welcome (will place the user's name here)</h1>
         <h1>Below are details of your current budget:</h1>
         <h1>You currently have: $45.83, enough to purchase the following goals below</h1>

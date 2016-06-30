@@ -31,6 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -52,57 +53,15 @@ public class WebRead extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-              
         
+        //System.out.println("hilll");
+        KeyHolder apiKey = new KeyHolder();
         
-        /*//http://stackoverflow.com/questions/6159118/using-java-to-pull-data-from-a-webpage
-        // Make a URL to the web page
-        URL url = new URL("http://api.walmartlabs.com/v1/search?query=ipod&format=json&apiKey=5wjugsmujh4pn62fv7727e5h");
-
-        // Get the input stream through URL Connection
-        URLConnection con = url.openConnection();
-        InputStream is =con.getInputStream();
-
-        // Once you have the Input Stream, it's just plain old Java IO stuff.
-        // For this case, since you are interested in getting plain-text web page
-        // I'll use a reader and output the text content to System.out.
-        // For binary content, it's better to directly read the bytes from stream and write
-        // to the target file.
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        String line = null;
-        // read each line and write to System.out
-        while ((line = br.readLine()) != null) {
-            System.out.println(line + "help");
-        }*/
+        String search = request.getParameter("search");
         
+        String encoded = URLEncoder.encode(search, "UTF-8");
         
-        
-        
-        /*URL oracle = new URL("http://www.oracle.com/");
-        BufferedReader in = new BufferedReader(
-        new InputStreamReader(oracle.openStream()));
-
-        String inputLine;
-        while ((inputLine = in.readLine()) != null)
-            System.out.println(inputLine);
-        in.close();*/
-        
-        
-        //http://stackoverflow.com/questions/12634213/how-to-access-a-url-and-get-its-response-from-java-servlet
-        /*URL urldemo = new URL("http://www.demo.com/");
-        URLConnection yc = urldemo.openConnection();
-        BufferedReader in = new BufferedReader(new InputStreamReader(
-                yc.getInputStream()));
-        String inputLine;
-        while ((inputLine = in.readLine()) != null)
-            System.out.println(inputLine);
-        in.close();*/
-        
-        System.out.println("hilll");
-        
-        URL url = new URL("http://api.walmartlabs.com/v1/search?apiKey=emj6vsm9kpavtwqkcjf6fmeh&query=ipod");
+        URL url = new URL("http://api.walmartlabs.com/v1/search?apiKey=" + apiKey.getKey() + "&query=" + encoded);
 
         ObjectMapper mapper = new ObjectMapper(); 
         Map<String, Object> map = mapper.readValue(url, Map.class);
@@ -114,7 +73,7 @@ public class WebRead extends HttpServlet {
         List list = (List)map.get("items");
         //List titles;
 
-        System.out.println("helppppppppp");
+        //System.out.println("helppppppppp");
         for (Object item : list) { 
               Map<String, Object> innerMap = (Map<String, Object>)item; 
               for (String key : innerMap.keySet()) { 
@@ -126,7 +85,7 @@ public class WebRead extends HttpServlet {
         
         request.setAttribute("results", list);
         
-        request.getRequestDispatcher("/SearchResults.jsp").forward(request, response);/**/
+        request.getRequestDispatcher("/SearchResults.jsp").forward(request, response);
   
     }
 
