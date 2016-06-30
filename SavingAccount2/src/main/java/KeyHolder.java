@@ -10,8 +10,7 @@
  */
 public class KeyHolder {
     
-    private String key = "emj6vsm9kpavtwqkcjf6fmeh";
-
+    private String key;
     public KeyHolder() {
     }
 
