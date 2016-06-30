@@ -102,24 +102,16 @@ public class WebRead extends HttpServlet {
         
         System.out.println("hilll");
         
-        URL url = new URL("http://www.omdbapi.com/?t=True%20Grit&y=1969");
+        URL url = new URL("http://api.walmartlabs.com/v1/search?apiKey=emj6vsm9kpavtwqkcjf6fmeh&query=ipod");
 
         ObjectMapper mapper = new ObjectMapper(); 
         Map<String, Object> map = mapper.readValue(url, Map.class);
 
-        /*for (String key : map.keySet()) {          
+        for (String key : map.keySet()) {          
               System.out.println(key + ": " + map.get(key)); 
-        }*/
+        }
         
-        String title = request.getParameter("Username");
-        
-        url = new URL("http://www.omdbapi.com/?s=" + title);
-
-        mapper = new ObjectMapper();
-
-        map = mapper.readValue(url, Map.class);
-
-        List list = (List)map.get("Search");
+        List list = (List)map.get("items");
         //List titles;
 
         System.out.println("helppppppppp");
@@ -134,7 +126,7 @@ public class WebRead extends HttpServlet {
         
         request.setAttribute("results", list);
         
-        request.getRequestDispatcher("/DisplayResults2.jsp").forward(request, response);/**/
+        request.getRequestDispatcher("/SearchResults.jsp").forward(request, response);/**/
   
     }
 
