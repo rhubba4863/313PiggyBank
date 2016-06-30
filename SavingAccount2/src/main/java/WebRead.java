@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,11 +12,27 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.net.URL;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -36,23 +53,10 @@ public class WebRead extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet WebRead</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet WebRead at " + request.getContextPath() + "</h1>");
-            out.println("<h1>ParkerH is Here</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+              
         
         
-        
-        //http://stackoverflow.com/questions/6159118/using-java-to-pull-data-from-a-webpage
+        /*//http://stackoverflow.com/questions/6159118/using-java-to-pull-data-from-a-webpage
         // Make a URL to the web page
         URL url = new URL("http://api.walmartlabs.com/v1/search?query=ipod&format=json&apiKey=5wjugsmujh4pn62fv7727e5h");
 
@@ -71,7 +75,67 @@ public class WebRead extends HttpServlet {
         // read each line and write to System.out
         while ((line = br.readLine()) != null) {
             System.out.println(line + "help");
+        }*/
+        
+        
+        
+        
+        /*URL oracle = new URL("http://www.oracle.com/");
+        BufferedReader in = new BufferedReader(
+        new InputStreamReader(oracle.openStream()));
+
+        String inputLine;
+        while ((inputLine = in.readLine()) != null)
+            System.out.println(inputLine);
+        in.close();*/
+        
+        
+        //http://stackoverflow.com/questions/12634213/how-to-access-a-url-and-get-its-response-from-java-servlet
+        /*URL urldemo = new URL("http://www.demo.com/");
+        URLConnection yc = urldemo.openConnection();
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                yc.getInputStream()));
+        String inputLine;
+        while ((inputLine = in.readLine()) != null)
+            System.out.println(inputLine);
+        in.close();*/
+        
+        System.out.println("hilll");
+        
+        URL url = new URL("http://www.omdbapi.com/?t=True%20Grit&y=1969");
+
+        ObjectMapper mapper = new ObjectMapper(); 
+        Map<String, Object> map = mapper.readValue(url, Map.class);
+
+        /*for (String key : map.keySet()) {          
+              System.out.println(key + ": " + map.get(key)); 
+        }*/
+        
+        String title = request.getParameter("Username");
+        
+        url = new URL("http://www.omdbapi.com/?s=" + title);
+
+        mapper = new ObjectMapper();
+
+        map = mapper.readValue(url, Map.class);
+
+        List list = (List)map.get("Search");
+        //List titles;
+
+        System.out.println("helppppppppp");
+        for (Object item : list) { 
+              Map<String, Object> innerMap = (Map<String, Object>)item; 
+              for (String key : innerMap.keySet()) { 
+                    System.out.println(key + ": " + innerMap.get(key));
+                    //if (key == "Title")
+                      //  titles.add(innerMap.get(key));
+              } 
         }
+        
+        request.setAttribute("results", list);
+        
+        request.getRequestDispatcher("/DisplayResults2.jsp").forward(request, response);/**/
+  
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
