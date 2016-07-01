@@ -17,7 +17,7 @@ CREATE TABLE user (
 
 CREATE TABLE item (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	walmartId VARCHAR(30)
+	walmartId VARCHAR(30),
 	priority INT,
 	userId INT,
 	FOREIGN KEY (userId) REFERENCES user(id)
