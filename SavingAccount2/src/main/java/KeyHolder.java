@@ -10,18 +10,13 @@
  */
 public class KeyHolder {
     
-    private String key;
+    private String key = "emj6vsm9kpavtwqkcjf6fmeh";
     public KeyHolder() {
     }
 
     public String getKey() {
         return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-    
+    } 
     
     
 }
