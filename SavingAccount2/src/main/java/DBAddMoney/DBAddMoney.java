@@ -47,7 +47,8 @@ public class DBAddMoney {
             while(rs.next()){
                //Retrieve by column name
                budget = Float.parseFloat(rs.getString("budget"));
-               newAmount = addAmount + budget;
+               newAmount = (float) (Math.round((addAmount + budget) * 100.0)/ 100.0);
+               
                //Display values
                System.out.println("Budget: " + budget);
                System.out.println("newAmount: " + newAmount);
@@ -56,7 +57,8 @@ public class DBAddMoney {
             System.out.println("Creating Update statement...");
             stmt = conn.createStatement();
             sql = "UPDATE user SET budget = " + newAmount + " WHERE id = " + userId;
-            stmt.executeQuery(sql);
+            stmt.executeUpdate(sql);
+            System.out.println("Statement Executed...");
             
             //STEP 6: Clean-up environment
             rs.close();
