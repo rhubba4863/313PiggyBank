@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import DBAddMoney.DBAddMoney;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -31,11 +32,17 @@ public class AddMoney extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        double addAmount = Double.parseDouble(request.getParameter("amount"));
+        float addAmount = Float.parseFloat(request.getParameter("amount"));
+        int userId = 2;//(int)request.getAttribute("userId");
         
-        // Pull the current amount from the database.
+        DBAddMoney money = new DBAddMoney();
         
-        // Update the current amount with the addAmount and replace back in. 
+        float newAmount = money.connectAddFunds(addAmount, userId);
+        
+        request.setAttribute("budget", newAmount);
+        
+        // forward to the mainpage servlet.
+        
 
     }
 
