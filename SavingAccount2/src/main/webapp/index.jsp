@@ -12,12 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-         <div> Robert still is here</div>
-        <form action="MainUserPage.jsp" method="GET">
-              Username: <input type="text" name="Username" /><br />
-              Password: <input type="text" name="Password" /><br />
-              <input type="submit" value="Sign-in" />
-        </form>
+        <jsp:forward page="LoginPage.jsp" />
     </body>
 </html>
