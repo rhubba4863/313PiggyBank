@@ -17,7 +17,7 @@
 
         <ul>
             <c:forEach var="movie" items="${results}">
-                <li>${movie.Title} (${movie.Year})</li>
+                <li>${movie.name} (${movie.salePrice})</li>
             </c:forEach>
         </ul>
  
