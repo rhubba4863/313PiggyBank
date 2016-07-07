@@ -20,8 +20,9 @@
         <c:forEach var="item" items="${results}">
             <li>
                 ${item.name}</br>$${item.salePrice}</br>
-                <input type="checkbox" name="addItem[]" value="${item.itemId}"/>Add to Wishlist</br>
-                <img src="${item.mediumImage}" />
+                <img src="${item.mediumImage}" /></br>
+                ${item.customerRating}(${item.numReviews} reviews)</br>
+                <input type="checkbox" name="addItem[]" value="${item.itemId}"/>Add to Wishlist
                 </br></br></br>
             </li>
         </c:forEach>
@@ -31,6 +32,8 @@
         <form action="searchPage" method="POST">
             <input type="submit" name="page" value="Previous"/>
             <input type="submit" name="page" value="Next"/>
+            <input type="hidden" name="nextResult" value="${start}" />
+            <input type="hidden" name="search" value="${search}" />
         </form>
     </body>
 </html>

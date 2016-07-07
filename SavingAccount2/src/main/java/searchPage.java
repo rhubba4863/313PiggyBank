@@ -36,8 +36,8 @@ public class searchPage extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         KeyHolder apiKey = new KeyHolder();
-        Integer strt = (Integer) request.getAttribute("start");
-        String search = (String) request.getAttribute("search");
+        Integer strt = Integer.parseInt(request.getParameter("nextResult"));
+        String search = request.getParameter("search");
         
         System.out.println("Submit value = " + request.getParameter("page"));
         
