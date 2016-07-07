@@ -13,13 +13,24 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello Search Results!</h1>
+        <h1>Search Results!</h1>
         
+        <form action="" method="POST">
         <ul>
-        <c:forEach var="movie" items="${results}">
-            <li>${movie.name} ($ ${movie.salePrice})</li>
+        <c:forEach var="item" items="${results}">
+            <li>
+                ${item.name}</br>$${item.salePrice}</br>
+                <input type="checkbox" name="addItem[]" value="${item.itemId}"/>Add to Wishlist</br>
+                <img src="${item.mediumImage}" />
+                </br></br></br>
+            </li>
         </c:forEach>
         </ul>
-        
+            <input type="submit" value="Add Items" />
+        </form>
+        <form action="searchPage" method="POST">
+            <input type="submit" name="page" value="Previous"/>
+            <input type="submit" name="page" value="Next"/>
+        </form>
     </body>
 </html>

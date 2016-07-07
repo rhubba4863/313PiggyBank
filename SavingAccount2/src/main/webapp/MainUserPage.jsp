@@ -16,7 +16,7 @@
         
         <form action="WebRead" method="POST">
             <input type="text" name="search"/>
-            <input type="submit" value="Search"/>
+            <input type="submit" name="page" value="Search"/>
         </form>
         <h1>Welcome (will place the user's name here)</h1>
         <h1>Below are details of your current budget:</h1>

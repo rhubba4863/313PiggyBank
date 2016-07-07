@@ -5,42 +5,24 @@
  */
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.List;
-import java.util.Map;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author robert
+ * @author Braden
  */
-@WebServlet(urlPatterns = {"/WebRead"})
-public class WebRead extends HttpServlet {
+@WebServlet(urlPatterns = {"/searchPage"})
+public class searchPage extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -54,16 +36,21 @@ public class WebRead extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         KeyHolder apiKey = new KeyHolder();
-        Integer strt = 1;
-        String search = "";
+        Integer strt = (Integer) request.getAttribute("start");
+        String search = (String) request.getAttribute("search");
         
-        //System.out.println("Submit value = " + request.getParameter("page"));
+        System.out.println("Submit value = " + request.getParameter("page"));
         
-        search = request.getParameter("search");
+        if ("Next".equals(request.getParameter("page"))) {
+            strt = strt + 10;
+        }
+        else {
+            strt = strt - 10;
+        }
         
         String encoded = URLEncoder.encode(search, "UTF-8");
         
-        URL url = new URL("http://api.walmartlabs.com/v1/search?apiKey=" + apiKey.getKey() + "&query=" + encoded);
+        URL url = new URL("http://api.walmartlabs.com/v1/search?apiKey=" + apiKey.getKey() + "&query=" + encoded + "&start=" + strt);
 
         ObjectMapper mapper = new ObjectMapper(); 
         Map<String, Object> map = mapper.readValue(url, Map.class);
@@ -90,7 +77,6 @@ public class WebRead extends HttpServlet {
         request.setAttribute("search", search);
         
         request.getRequestDispatcher("/SearchResults.jsp").forward(request, response);
-  
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
