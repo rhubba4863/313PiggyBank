@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Robert
  */
-@WebServlet(urlPatterns = {"/LoginCheckServlet"})
-public class LoginCheckServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/CreateAccountServlet"})
+public class CreateAccountServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,6 +30,22 @@ public class LoginCheckServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+      
+        
+        
+        String username = request.getParameter("newUsername");
+        String password = request.getParameter("newPassword");
+        //String budget = request.getParameter("newBudget");
+        float budget = Float.parseFloat(request.getParameter("newBudget"));
+        
+        DBCreateAccount newAccount = new DBCreateAccount();
+        
+        newAccount.insertAccount(username, password, budget);
+        
+        request.setAttribute("username", username);
+        //request.getSession().setAttribute("password", password);
+        request.setAttribute("budget", budget);
+        response.sendRedirect("MainUserPage.jsp");
         
     }
 

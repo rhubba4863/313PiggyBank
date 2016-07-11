@@ -35,19 +35,13 @@
 					<h1>Hey Guys!!!</h1>
                                         <h1>Welcome to the Walmart Page !</h1>
 				</div>
-				<div style="text-align: left; margin-left: 2%"> 
+				<div style="text-align: center"> 
 					Username: <input type="text" name="Username" /><br />
                                         Password: <input type="text" name="Password" /><br />
                                         <input type="submit" value="Sign-in" />
-
-					<!-- SUBMIT RESULTS OF PAGE 
-					<input type="submit-->
-				</div>
-			
-			<br><br><br>
-		
-
-
+                                        <a href="CreateNewAccount.jsp" style="">Create a New Account</a>
+                                </div>
+                            <br /><br /><br  />
 			</form>
 		</div>
 		<!--</div>-->
