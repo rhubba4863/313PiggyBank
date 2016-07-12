@@ -30,14 +30,14 @@
 		</div>
 		<div style="background-color: blue; margin:1%; text-align: center">
 		
-			<form action="MainUserPage.jsp" method="GET">
+			<form action="LoginCheckServlet" method="POST">
 				<div style="margin:0%; padding:1%;"> 
 					<h1>Hey Guys!!!</h1>
                                         <h1>Welcome to the Walmart Page !</h1>
 				</div>
 				<div style="text-align: center"> 
-					Username: <input type="text" name="Username" /><br />
-                                        Password: <input type="text" name="Password" /><br />
+					Username: <input type="text" id="Username" name="Username" /><br />
+                                        Password: <input type="text" id="Password" name="Password" /><br />
                                         <input type="submit" value="Sign-in" />
                                         <a href="CreateNewAccount.jsp" style="">Create a New Account</a>
                                 </div>

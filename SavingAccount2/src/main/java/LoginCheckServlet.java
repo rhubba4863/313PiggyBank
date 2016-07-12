@@ -31,6 +31,24 @@ public class LoginCheckServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String username = request.getParameter("Username");
+        String password = request.getParameter("Password");
+        
+        DBLoginCheck check = new DBLoginCheck();
+        
+        boolean isRealAccount = check.checkAccount(username, password);
+        
+        if (isRealAccount)
+        {
+            float budget = check.getFunds(username);
+            request.setAttribute("username", username);
+            request.setAttribute("budget", budget);
+            response.sendRedirect("MainUserPage.jsp");
+        }
+        else 
+        {
+            response.sendRedirect("LoginPage.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
