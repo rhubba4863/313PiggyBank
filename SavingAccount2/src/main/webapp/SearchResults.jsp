@@ -15,14 +15,14 @@
     <body>
         <h1>Search Results!</h1>
         
-        <form action="" method="POST">
+        <form action="addItemsServlet" method="POST">
         <ul>
         <c:forEach var="item" items="${results}">
             <li>
                 ${item.name}</br>$${item.salePrice}</br>
                 <img src="${item.mediumImage}" /></br>
                 ${item.customerRating}(${item.numReviews} reviews)</br>
-                <input type="checkbox" name="addItem[]" value="${item.itemId}"/>Add to Wishlist
+                <input type="checkbox" name="addItems" value="${item.itemId}"/>Add to Wishlist
                 </br></br></br>
             </li>
         </c:forEach>

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import DBAddMoney.DBAddMoney;
+import DBAddMoney.DBaddItems;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Braden
  */
-@WebServlet(urlPatterns = {"/AddMoney"})
-public class AddMoney extends HttpServlet {
+@WebServlet(urlPatterns = {"/addItemsServlet"})
+public class addItemsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,17 +31,14 @@ public class AddMoney extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String[] addItems = request.getParameterValues("addItems");
+        int userId = 2;//Get it from the session variable.
+        DBaddItems addMe = new DBaddItems();
         
-        float addAmount = Float.parseFloat(request.getParameter("amount"));
-        Integer userId = Integer.parseInt(request.getParameter("userId"));
+        for (String item: addItems){
+            addMe.connectAddItems(Integer.parseInt(item), userId);
+        }
         
-        DBAddMoney money = new DBAddMoney();
-        
-        float newAmount = money.connectAddFunds(addAmount, userId);
-        
-        request.setAttribute("budget", newAmount);
-        
-        // forward to the mainpage servlet.
         response.sendRedirect("MainUserPage.jsp");
     }
 

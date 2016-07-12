@@ -24,10 +24,10 @@ public class DBLoginCheck {
     static final String PASS = "arrows";
     
     
-    public boolean checkAccount(String Username, String Password) {
+    public Integer checkAccount(String Username, String Password) {
         Connection conn = null;
         Statement stmt = null;
-        boolean isPerson = false;
+        Integer isPerson = 0;
         try{
             //STEP 2: Register JDBC driver
             Class.forName(JDBC_DRIVER);
@@ -49,6 +49,7 @@ public class DBLoginCheck {
                //Retrieve by column name
                String username = rs.getString("username");
                String password = rs.getString("password");
+               Integer userId = Integer.parseInt(rs.getString("id"));
                
                //Display values
                System.out.println("username: " + username);
@@ -56,7 +57,7 @@ public class DBLoginCheck {
                
                if (username != null && password != null
                 && username.equals(Username) && password.equals(Password)) {
-                   isPerson = true;
+                   isPerson = userId;
                }
             }
             

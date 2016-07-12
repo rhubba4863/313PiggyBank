@@ -36,14 +36,16 @@ public class LoginCheckServlet extends HttpServlet {
         
         DBLoginCheck check = new DBLoginCheck();
         
-        boolean isRealAccount = check.checkAccount(username, password);
+        Integer userId = check.checkAccount(username, password);
         
-        if (isRealAccount)
+        if (userId != 0)
         {
             float budget = check.getFunds(username);
             request.setAttribute("username", username);
             request.setAttribute("budget", budget);
-            response.sendRedirect("MainUserPage.jsp");
+            request.setAttribute("userId", userId); // Uncomment this when the userId is in.
+//            response.sendRedirect("MainUserPage.jsp");
+            request.getRequestDispatcher("MainUserPage.jsp").forward(request, response);
         }
         else 
         {

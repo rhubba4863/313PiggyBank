@@ -49,6 +49,7 @@
                     <div style="text-align: left; margin-left: 2%">
                         <p>$
                             <input type="text" name="amount" />
+                            <input type="hidden" name="userId" value="${userId}"/>
                             <input type="submit" value="Add Funds" />
                         </p>
                     </div>
