@@ -45,7 +45,7 @@ public class CreateAccountServlet extends HttpServlet {
         request.setAttribute("username", username);
         //request.getSession().setAttribute("password", password);
         request.setAttribute("budget", budget);
-        response.sendRedirect("MainUserPage.jsp");
+        request.getRequestDispatcher("MainUserPage.jsp").forward(request, response);
         
     }
 

@@ -44,7 +44,6 @@ public class LoginCheckServlet extends HttpServlet {
             request.setAttribute("username", username);
             request.setAttribute("budget", budget);
             request.setAttribute("userId", userId); // Uncomment this when the userId is in.
-//            response.sendRedirect("MainUserPage.jsp");
             request.getRequestDispatcher("MainUserPage.jsp").forward(request, response);
         }
         else 
