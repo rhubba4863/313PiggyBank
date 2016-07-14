@@ -50,18 +50,19 @@ public class DBUserList {
                //Retrieve by column name
                String id = rs.getString("walmartId");
                
-               currentList.concat(id);
+               currentList += id;
                
                
-               currentList.concat(",");
+               currentList += ",";
                //Display values
-               System.out.println("walmart: " + id);
+               System.out.println("walmartId: " + id);
+               System.out.println("currentList: " + currentList);
                
                
                
             }
             //Integer removeComma = currentList.lastIndexOf(",");
-            if (currentList != null && currentList.length() > 0 && currentList.charAt(currentList.length()-1)==',') {
+            if (currentList.length() > 0 && currentList.charAt(currentList.length()-1)==',') {
                  currentList = currentList.substring(0, currentList.length()-1);
             }
             

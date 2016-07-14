@@ -38,10 +38,19 @@
                     </div>
                     <div style="text-align: left; margin-left: 2%"> 
                         <input type="text" name="search"/>
+                        <input type="hidden" name="userId" value="${userId}"/>
                         <input type="submit" name="page" value="Search"/>            
                     </div>
 			
-                    <br><br><br>
+                    <br>
+                    <c:forEach var="item" items="${items}">
+                        <div>
+                            ${item.name}</br>$${item.salePrice}</br>
+                            <img src="${item.mediumImage}" /></br>
+                            ${item.customerRating}(${item.numReviews} reviews)</br>
+                        </div>
+                    </c:forEach>
+                    <br><br>
 		</form>
 		
 		<!--</div>-->

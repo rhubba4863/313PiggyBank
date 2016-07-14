@@ -5,13 +5,10 @@
  */
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
-import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -19,28 +16,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.List;
-import java.util.Map;
 
 /**
  *
- * @author robert
+ * @author Braden
  */
-@WebServlet(urlPatterns = {"/WebRead"})
-public class WebRead extends HttpServlet {
+@WebServlet(urlPatterns = {"/userList"})
+public class userList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -53,44 +35,38 @@ public class WebRead extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Integer userId = (Integer)request.getAttribute("userId");
         KeyHolder apiKey = new KeyHolder();
-        Integer strt = 1;
-        String search = "";
+        DBUserList userList = new DBUserList();
+        ObjectMapper mapper = new ObjectMapper();
+        String itemIds = userList.getUserList(userId);
+        request.setAttribute("items", "");
         
-        //System.out.println("Submit value = " + request.getParameter("page"));
+        if (itemIds != ""){
+            URL url = new URL("http://api.walmartlabs.com/v1/items?ids=" + itemIds + "&apiKey=" + apiKey.getKey() + "&format=json");
         
-        search = request.getParameter("search");
-        
-        String encoded = URLEncoder.encode(search, "UTF-8");
-        
-        URL url = new URL("http://api.walmartlabs.com/v1/search?apiKey=" + apiKey.getKey() + "&query=" + encoded);
+            Map<String, Object> map = mapper.readValue(url, Map.class);
 
-        ObjectMapper mapper = new ObjectMapper(); 
-        Map<String, Object> map = mapper.readValue(url, Map.class);
+            for (String key : map.keySet()) {          
+                  System.out.println(key + ": " + map.get(key)); 
+            }
 
-        for (String key : map.keySet()) {          
-              System.out.println(key + ": " + map.get(key)); 
+            List<Map> itemList = (List)map.get("items");
+
+            for (Object item : itemList) { 
+                  Map<String, Object> innerMap = (Map<String, Object>)item; 
+                  for (String key : innerMap.keySet()) { 
+                        System.out.println(key + ": " + innerMap.get(key));
+                        //if (key == "Title")
+                          //  titles.add(innerMap.get(key));
+                  } 
+            }
+
+            request.setAttribute("items", itemList);
         }
         
-        List<Map> list = (List)map.get("items");
-        //List titles;
-
-        //System.out.println("helppppppppp");
-        for (Object item : list) { 
-              Map<String, Object> innerMap = (Map<String, Object>)item; 
-              for (String key : innerMap.keySet()) { 
-                    System.out.println(key + ": " + innerMap.get(key));
-                    //if (key == "Title")
-                      //  titles.add(innerMap.get(key));
-              } 
-        }
         
-        request.setAttribute("results", list);
-        request.setAttribute("start", strt);
-        request.setAttribute("search", search);
-        
-        request.getRequestDispatcher("/SearchResults.jsp").forward(request, response);
-  
+        request.getRequestDispatcher("/MainUserPage.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

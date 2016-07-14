@@ -32,7 +32,7 @@ public class addItemsServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String[] addItems = request.getParameterValues("addItems");
-        int userId = 2;//Get it from the session variable.
+        Integer userId = Integer.parseInt(request.getParameter("userId"));
         DBaddItems addMe = new DBaddItems();
         
         for (String item: addItems){

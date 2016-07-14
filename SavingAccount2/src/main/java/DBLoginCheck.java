@@ -54,6 +54,7 @@ public class DBLoginCheck {
                //Display values
                System.out.println("username: " + username);
                System.out.println("password: " + password);
+               System.out.println("userId: " + userId);
                
                if (username != null && password != null
                 && username.equals(Username) && password.equals(Password)) {

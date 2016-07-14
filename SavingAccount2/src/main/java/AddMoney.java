@@ -42,7 +42,7 @@ public class AddMoney extends HttpServlet {
         request.setAttribute("budget", newAmount);
         
         // forward to the mainpage servlet.
-        response.sendRedirect("MainUserPage.jsp");
+        response.sendRedirect("/userList");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
