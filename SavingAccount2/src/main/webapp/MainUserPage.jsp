@@ -34,7 +34,8 @@
 		
 		
                 <div style="margin:0%; padding:1%;"> 
-                    <h1>Welcome Link (user page)</h1>
+                    <h1>Welcome ${userName}</h1>
+                    <h3>Budget: $${budget}</h3>
                 </div>
                 
                 <form action="WebRead" method="POST">
@@ -52,6 +53,7 @@
                             ${item.name}</br>$${item.salePrice}</br>
                             <img src="${item.mediumImage}" /></br>
                             ${item.customerRating}(${item.numReviews} reviews)</br>
+                            <a href="${item.addToCartUrl}">Go Buy Me!</a></br>
                         </div>
                     </c:forEach>
                     <br><br>

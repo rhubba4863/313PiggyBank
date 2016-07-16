@@ -40,9 +40,10 @@ public class AddMoney extends HttpServlet {
         float newAmount = money.connectAddFunds(addAmount, userId);
         
         request.setAttribute("budget", newAmount);
+        request.setAttribute("userId", userId);
         
         // forward to the mainpage servlet.
-        response.sendRedirect("/userList");
+        request.getRequestDispatcher("/userList").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

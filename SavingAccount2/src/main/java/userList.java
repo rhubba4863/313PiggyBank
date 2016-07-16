@@ -40,6 +40,13 @@ public class userList extends HttpServlet {
         DBUserList userList = new DBUserList();
         ObjectMapper mapper = new ObjectMapper();
         String itemIds = userList.getUserList(userId);
+        float budget = userList.checkFunds(userId);
+        System.out.println(budget);
+        float[] difference = new float[20];
+        String userName = userList.getUserName(userId);
+        System.out.println(userName);
+        request.setAttribute("userName", userName);
+        request.setAttribute("budget", budget);
         request.setAttribute("items", "");
         
         if (itemIds != ""){
@@ -52,16 +59,20 @@ public class userList extends HttpServlet {
             }
 
             List<Map> itemList = (List)map.get("items");
-
+            
+            Integer index = 0;
             for (Object item : itemList) { 
                   Map<String, Object> innerMap = (Map<String, Object>)item; 
                   for (String key : innerMap.keySet()) { 
                         System.out.println(key + ": " + innerMap.get(key));
-                        //if (key == "Title")
-                          //  titles.add(innerMap.get(key));
-                  } 
+                        if (key == "salePrice") {
+                            //difference[index] = budget - innerMap.get(key);
+                            //index += 1;
+                        }
+                  }
             }
-
+            
+            //request.setAttribute("difference", difference);
             request.setAttribute("items", itemList);
         }
         
