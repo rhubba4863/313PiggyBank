@@ -14,7 +14,7 @@
         
         <style>
 	 body {
-		background-image: url("walmart-store.jpg");
+		background-color: blue;
 		opacity: 0.8;
 		filter: alpha(opacity=40);
 		background-size:cover
@@ -23,7 +23,7 @@
     </head>
     
     
-    <body background="walmart-store.jpg"> 
+    <body> 
         <div id="mainBox" style="background-color: white; margin: 8%; padding: 1%">
             <!-- main title position -->
             <div></div> 
