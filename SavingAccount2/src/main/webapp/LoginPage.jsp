@@ -39,7 +39,7 @@
 					Username: <input type="text" id="Username" name="Username" /><br />
                                         Password: <input type="text" id="Password" name="Password" /><br />
                                         <input type="submit" value="Sign-in" />
-                                        <a href="CreateNewAccount.jsp" style="">Create a New Account</a>
+                                        <input type="button" onclick="location.href='CreateNewAccount.jsp';" value="Create Account" />
                                 </div>
                             <br /><br /><br  />
 			</form>
