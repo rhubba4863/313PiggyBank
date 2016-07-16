@@ -37,6 +37,8 @@ public class searchPage extends HttpServlet {
             throws ServletException, IOException {
         KeyHolder apiKey = new KeyHolder();
         Integer strt = Integer.parseInt(request.getParameter("nextResult"));
+        Integer userId = Integer.parseInt(request.getParameter("userId"));
+
         String search = request.getParameter("search");
         
         System.out.println("Submit value = " + request.getParameter("page"));
@@ -71,10 +73,12 @@ public class searchPage extends HttpServlet {
                       //  titles.add(innerMap.get(key));
               } 
         }
+        //System.out.println(userId);
         
         request.setAttribute("results", list);
         request.setAttribute("start", strt);
         request.setAttribute("search", search);
+        request.setAttribute("userId", userId);
         
         request.getRequestDispatcher("/SearchResults.jsp").forward(request, response);
     }

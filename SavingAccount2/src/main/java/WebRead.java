@@ -84,10 +84,13 @@ public class WebRead extends HttpServlet {
                       //  titles.add(innerMap.get(key));
               } 
         }
+        Integer userId = Integer.parseInt(request.getParameter("userId"));
+        //System.out.println(userId);
         
         request.setAttribute("results", list);
         request.setAttribute("start", strt);
         request.setAttribute("search", search);
+        request.setAttribute("userId", userId);
         
         request.getRequestDispatcher("/SearchResults.jsp").forward(request, response);
   

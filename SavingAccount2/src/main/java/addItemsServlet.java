@@ -32,14 +32,17 @@ public class addItemsServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String[] addItems = request.getParameterValues("addItems");
+        //System.out.println(request.getParameter("userId"));
         Integer userId = Integer.parseInt(request.getParameter("userId"));
+        //System.out.println(userId);
         DBaddItems addMe = new DBaddItems();
         
         for (String item: addItems){
             addMe.connectAddItems(Integer.parseInt(item), userId);
         }
+        request.setAttribute("userId", userId);
         
-        response.sendRedirect("MainUserPage.jsp");
+        request.getRequestDispatcher("userList").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

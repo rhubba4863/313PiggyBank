@@ -27,7 +27,7 @@
             </li>
         </c:forEach>
         </ul>
-            <input type="submit" name="userId" value="${userId}"/>
+            <input type="hidden" name="userId" value="${userId}"/>
             <input type="submit" value="Add Items" />
         </form>
         <form action="searchPage" method="POST">
@@ -35,6 +35,7 @@
             <input type="submit" name="page" value="Next"/>
             <input type="hidden" name="nextResult" value="${start}" />
             <input type="hidden" name="search" value="${search}" />
+            <input type="hidden" name="userId" value="${userId}" />
         </form>
     </body>
 </html>

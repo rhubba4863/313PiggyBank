@@ -32,16 +32,20 @@
             </div>
             <div style="background-color: blue; margin:1%; text-align: center">
 		
-		<form action="WebRead" method="POST">
-                    <div style="margin:0%; padding:1%;"> 
-                        <h1>Welcome Link (user page)</h1>
-                    </div>
-                    <div style="text-align: left; margin-left: 2%"> 
+		
+                <div style="margin:0%; padding:1%;"> 
+                    <h1>Welcome Link (user page)</h1>
+                </div>
+                
+                <form action="WebRead" method="POST">
+                    <div style="text-align: left; margin-left: 2%">
                         <input type="text" name="search"/>
                         <input type="hidden" name="userId" value="${userId}"/>
                         <input type="submit" name="page" value="Search"/>            
                     </div>
-			
+		</form>	
+                 
+                <div>        
                     <br>
                     <c:forEach var="item" items="${items}">
                         <div>
@@ -51,7 +55,7 @@
                         </div>
                     </c:forEach>
                     <br><br>
-		</form>
+                </div>
 		
 		<!--</div>-->
                 <form action="AddMoney" method="POST">
