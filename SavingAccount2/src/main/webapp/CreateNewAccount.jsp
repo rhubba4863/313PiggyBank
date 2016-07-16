@@ -12,7 +12,7 @@
         <title>Create Account Page</title>
     </head>
     <body>
-        <h1>Please enter your user credentials</h1>
+        <h1>Please enter your user credentials8fhffhfh</h1>
         <form action="CreateAccountServlet" method="POST">
             Username: <input type="text" id="newUsername" name="newUsername" /><br />
             Password: <input type="text" id="newPassword" name="newPassword" /><br />
