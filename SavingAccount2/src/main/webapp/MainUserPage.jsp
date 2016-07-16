@@ -32,8 +32,8 @@
             </div>
             <div style="background-color: blue; margin:1%; text-align: center">
 		
-		
-                <div style="margin:0%; padding:1%;"> 
+		<!-- begin displaying the users details and list -->
+                <div style="margin:0%; padding:1%; text-align: center"> 
                     <h1>Welcome ${userName}</h1>
                     <h3>Budget: $${budget}</h3>
                 </div>
