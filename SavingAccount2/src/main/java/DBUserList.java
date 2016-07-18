@@ -24,6 +24,76 @@ public class DBUserList {
     static final String USER = "legolas";
     static final String PASS = "arrows";
     
+    public void deleteItems(Integer userId, Integer item) {
+        Connection conn = null;
+        Statement stmt = null;
+        //float newAmount = (float) 0.0;
+        try{
+            //STEP 2: Register JDBC driver
+            Class.forName(JDBC_DRIVER);
+
+            //STEP 3: Open a connection
+            System.out.println("Connecting to database...");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            //STEP 4: Execute a query
+            System.out.println("Creating statement...");
+            stmt = conn.createStatement();
+            String sql;
+            sql = "DELETE FROM item WHERE userId =" + userId +" AND walmartId =" + item;
+            boolean isDeleted = stmt.execute(sql);
+            //System.out.println("Item deleted: " + isDeleted);
+            //float budget;
+
+            //STEP 5: Extract data from result set
+            /*while(rs.next()){
+               //Retrieve by column name
+               budget = Float.parseFloat(rs.getString("budget"));
+              // newAmount = (float) (Math.round((addAmount + budget) * 100.0)/ 100.0);
+               
+               //Display values
+               System.out.println("Budget: " + budget);
+               System.out.println("newAmount: " + newAmount);
+            }
+            
+            System.out.println("Creating Update statement...");
+            stmt = conn.createStatement();
+            sql = "UPDATE user SET budget = " + newAmount + " WHERE id = " + userId;
+            stmt.executeUpdate(sql);
+            System.out.println("Statement Executed...");*/
+            
+            //STEP 6: Clean-up environment
+            //rs.close();
+            stmt.close();
+            conn.close();
+         }catch(SQLException se){
+            //Handle errors for JDBC
+            se.printStackTrace();
+            //return false;
+         }catch(Exception e){
+            //Handle errors for Class.forName
+            e.printStackTrace();
+            //return false;
+         }finally{
+            //finally block used to close resources
+            try{
+               if(stmt!=null)
+                  stmt.close();
+            }catch(SQLException se2){
+            }// nothing we can do
+            try{
+               if(conn!=null)
+                  conn.close();
+            }catch(SQLException se){
+               se.printStackTrace();
+            }//end finally try
+         }//end try
+         System.out.println("Goodbye!");
+        
+        //return true;
+        //return newAmount;
+    }
+    
     public String getUserName(Integer userId) {
         Connection conn = null;
         Statement stmt = null;

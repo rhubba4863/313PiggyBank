@@ -48,14 +48,19 @@
                  
                 <div>        
                     <br>
-                    <c:forEach var="item" items="${items}">
-                        <div>
-                            ${item.name}</br>$${item.salePrice}</br>
-                            <img src="${item.mediumImage}" /></br>
-                            ${item.customerRating}(${item.numReviews} reviews)</br>
-                            <a href="${item.addToCartUrl}">Go Buy Me!</a></br>
-                        </div>
-                    </c:forEach>
+                    <form action="removeItems" method="POST">
+                        <c:forEach var="item" items="${items}">
+                            <div>
+                                ${item.name}</br>$${item.salePrice}</br>
+                                <img src="${item.mediumImage}" /></br>
+                                ${item.customerRating}(${item.numReviews} reviews)</br>
+                                <a href="${item.addToCartUrl}">Go Buy Me!</a></br>
+                                <input type="checkbox" name="removeItems" value="${item.itemId}"/>Remove Item</br>
+                            </div>
+                        </c:forEach>
+                        <input type="submit" value="Remove Items"/>
+                        <input type="hidden" name="userId" value="${userId}"/>
+                    </form>
                     <br><br>
                 </div>
 		
@@ -69,8 +74,7 @@
                         </p>
                     </div>
                     <div style="text-align: left; margin-left: 2%">
-                        <input type="button" value="Edit Budget Amount" name="EditCash" />
-                        <input type="button" value="Add/Remove Items" name="EditItems" />
+             
                         <input type="button" value="Logout" name="CreateCourse" />
                     </div>
                     <br>
