@@ -55,7 +55,7 @@
                         <div>
                             ${item.name}</br>$${item.salePrice}</br>
                             <img src="${item.mediumImage}" border="5"/></br>
-                            Rating of ${item.customerRating}(${item.numReviews} reviews)</br>
+                            Rating of ${item.customerRating} (${item.numReviews} reviews)</br>
                             <a href="${item.addToCartUrl}">Go Buy Me!</a></br>
                             <hr>
                         </div>
