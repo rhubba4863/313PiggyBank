@@ -15,7 +15,6 @@
         <style>
 	 body {
 		background-color: blue;
-		opacity: 0.8;
 		filter: alpha(opacity=40);
 		background-size:cover
 	 } 	  
@@ -24,28 +23,42 @@
     
     
     <body> 
-        <div id="mainBox" style="background-color: white; margin: 8%; padding: 1%">
+        <div id="mainBox" style="background-color: lightgray; margin: 18%; margin-top: 8%; padding: 1%">
             <!-- main title position -->
             <div></div> 
             <div style="background-color: red; margin:1%; text-align: center; padding: 0.1%"> 
 		<h1>Home Page</h1>
             </div>
-            <div style="background-color: blue; margin:1%; text-align: center">
+            <div style="background-color: white; margin:1%; text-align: center">
 		
 		<!-- begin displaying the users details and list -->
                 <div style="margin:0%; padding:1%; text-align: center"> 
                     <h1>Welcome ${userName}</h1>
                     <h3>Budget: $${budget}</h3>
                 </div>
-                
+               
+                <!--section to add or remove money amount-->
+                <form action="AddMoney" method="POST">
+                    <div style="text-align: left; margin-left: 2%">
+                        <p>$
+                            <input type="text" name="amount" />
+                            <input type="hidden" name="userId" value="${userId}"/>
+                            <input type="submit" value="Add Funds" />
+                        </p>
+                    </div>
+                </form>
                 <form action="WebRead" method="POST">
                     <div style="text-align: left; margin-left: 2%">
+                        Search for other products, your current desires <br>
+                        will be listed below...<br>
                         <input type="text" name="search"/>
                         <input type="hidden" name="userId" value="${userId}"/>
                         <input type="submit" name="page" value="Search"/>            
                     </div>
 		</form>	
-                 
+                
+                        <br>
+               <!-- display each desired product-->
                 <div>        
                     <br>
                     <form action="removeItems" method="POST">
@@ -64,18 +77,11 @@
                     <br><br>
                 </div>
 		
-		<!--</div>-->
-                <form action="AddMoney" method="POST">
-                    <div style="text-align: left; margin-left: 2%">
-                        <p>$
-                            <input type="text" name="amount" />
-                            <input type="hidden" name="userId" value="${userId}"/>
-                            <input type="submit" value="Add Funds" />
-                        </p>
-                    </div>
+		
+                <form action="LoginPage.jsp">
                     <div style="text-align: left; margin-left: 2%">
              
-                        <input type="button" value="Logout" name="CreateCourse" />
+                        <input type="submit" value="Logout" name="CreateCourse" />
                     </div>
                     <br>
                 </form>
