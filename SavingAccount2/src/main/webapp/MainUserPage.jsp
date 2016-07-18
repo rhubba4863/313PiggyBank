@@ -75,7 +75,8 @@
                     <div style="text-align: left; margin-left: 2%">
                         <input type="button" value="Edit Budget Amount" name="EditCash" />
                         <input type="button" value="Add/Remove Items" name="EditItems" />
-                        <input type="button" value="Logout" name="CreateCourse" />
+                        <!--<input type="button" value="Logout" name="CreateCourse" />-->
+                        <input type="button" onclick="location.href='LoginPage.jsp';" value="Logout" />
                     </div>
                     <br>
                 </form>

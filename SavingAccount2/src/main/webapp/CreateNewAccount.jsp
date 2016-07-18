@@ -34,7 +34,7 @@
                     Budget: <input type="text" id="newBudget" name="newBudget" /><br />
                     <input type="submit" value="Create" />
                 </form>
-                <a href="LoginPage.jsp" style="">Back to Login Page</a>
+                <input type="button" onclick="location.href='LoginPage.jsp';" value="Back to Login Page" />
             </div>
         </div>
     </body>

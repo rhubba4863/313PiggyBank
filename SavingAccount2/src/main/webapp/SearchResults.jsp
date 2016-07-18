@@ -55,6 +55,9 @@
                     <input type="hidden" name="userId" value="${userId}" />
                 </form>
                 </br>
+                <input type="button" onclick="location.href='LoginPage.jsp';" value="Back to Login Page" />
+                <!--<input type="button" onclick="location.href='MainUserPage.jsp';" value="Back to Main Page" />-->
+                <br>
             </div>
         </div>
     </body>

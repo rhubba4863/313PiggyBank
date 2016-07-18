@@ -23,33 +23,30 @@
     
     <body background="Flag.jpg"> 
 	<div id="mainBox" style="background-color: white; margin: 8%; padding: 1%">
-		<!-- main title position -->
-		<div></div> 
-		<div style="background-color: red; margin:1%; text-align: center; padding: 0.1%"> 
-			<h1>Semester Sign-up</h1>
-		</div>
-		<div style="background-color: blue; margin:1%; text-align: center">
-		
-			<form action="LoginCheckServlet" method="POST">
-				<div style="margin:0%; padding:1%;"> 
-					<h1>Hey Guys!!!</h1>
-                                        <h1>Welcome to the Walmart Page !</h1>
-				</div>
-				<div style="text-align: center"> 
-					Username: <input type="text" id="Username" name="Username" /><br />
-                                        Password: <input type="text" id="Password" name="Password" /><br />
-                                        <input type="submit" value="Sign-in" />
-                                        <input type="button" onclick="location.href='CreateNewAccount.jsp';" value="Create Account" />
-                                </div>
-                            <br /><br /><br  />
-			</form>
-		</div>
-		<!--</div>-->
+            <!-- main title position -->
+            <div></div> 
+            <div style="background-color: red; margin:1%; text-align: center; padding: 0.1%"> 
+                <h1>Semester Sign-up</h1>
+            </div>
+            <div style="background-color: blue; margin:1%; text-align: center">
+
+                <form action="LoginCheckServlet" method="POST">
+                    <div style="margin:0%; padding:1%;"> 
+                        <h1>Hey Guys!!!</h1>
+                        <h1>Welcome to the Walmart Page !</h1>
+                    </div>
+                    <div style="text-align: center"> 
+                        Username: <input type="text" id="Username" name="Username" /><br />
+                        Password: <input type="text" id="Password" name="Password" /><br />
+                        <input type="submit" value="Sign-in" />
+                        <input type="button" onclick="location.href='CreateNewAccount.jsp';" value="Create Account" />
+                    </div>
+                    <br /><br /><br  />
+                </form>
+            </div>
+            <!--</div>-->
 	</div>
-	
-
-
-</body>
+    </body>
     
     
     
