@@ -61,6 +61,7 @@
                <!-- display each desired product-->
                 <div>        
                     <br>
+                    <hr>
                     <form action="removeItems" method="POST">
                         <c:forEach var="item" items="${items}">
                             <div>
@@ -69,6 +70,7 @@
                                 ${item.customerRating}(${item.numReviews} reviews)</br>
                                 <a href="${item.addToCartUrl}">Go Buy Me!</a></br>
                                 <input type="checkbox" name="removeItems" value="${item.itemId}"/>Remove Item</br>
+                                <hr>
                             </div>
                         </c:forEach>
                         <input type="submit" value="Remove Items"/>
