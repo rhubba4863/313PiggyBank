@@ -15,11 +15,14 @@ import java.sql.Statement;
  * @author Braden
  */
 public class DBaddItems {
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/savingsaccount";
+    static final String DB_HOST = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+    static final String DB_PORT = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
+    static final String DB_URL = "jdbc:mysql://" + DB_HOST + ":" + DB_PORT + "/savingsAccount";
     
-    static final String USER = "legolas";
-    static final String PASS = "arrows";
+    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    
+    static final String USER = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+    static final String PASS = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
     
     public void connectAddItems(int itemId, int userId){
         Connection conn = null;

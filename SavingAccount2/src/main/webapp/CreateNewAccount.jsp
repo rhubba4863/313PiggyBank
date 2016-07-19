@@ -30,7 +30,7 @@
                 <h1>Please enter your user credentials</h1>
                 <form action="CreateAccountServlet" method="POST">
                     Username: <input type="text" id="newUsername" name="newUsername" /><br />
-                    Password: <input type="text" id="newPassword" name="newPassword" /><br />
+                    Password: <input type="password" id="newPassword" name="newPassword" /><br />
                     Budget: <input type="text" id="newBudget" name="newBudget" /><br />
                     <input type="submit" value="Create" />
                 </form>
